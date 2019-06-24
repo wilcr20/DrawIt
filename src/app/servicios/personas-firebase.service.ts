@@ -2,7 +2,7 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { AngularFireDatabase, AngularFireList } from '@angular/fire/database';
 
-
+ 
 @Injectable({
   providedIn: 'root'
 })
@@ -25,6 +25,11 @@ export class PersonasFirebaseService {
 
   actualizarPersona(user, key) {
     this.firebase.database.ref('Personas/' + key).set(user);
+  }
+
+  eliminarPersona(id){
+    console.log(this.listUsers)
+    this.listUsers.remove(id);
   }
 
 } 

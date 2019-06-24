@@ -45,7 +45,31 @@ export class MiCuentaComponent implements OnInit {
     if (this.contrasenaForm.status == "VALID") {
       this.verificarContraseñaActual();
     }
+  }
 
+  eliminarCuenta(){
+    Swal.fire({
+      title: 'Elimianar Cuenta',
+      text: "Si eliminas tu cuenta, todos tus datos serán removidos, así como tud dibujos creados en la plataforma.",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, deseo eliminarla!'
+    }).then((result) => {
+      if (result.value) {
+        this.personaServ.obtenerPersonas();
+        this.personaServ.eliminarPersona(this.authServ.usserLogged.key);
+        this.authServ.removeUserLoggedIn();
+        this.router.navigate(['/dibuja'])
+        
+        Swal.fire(
+          'Eliminada!',
+          'Tu cuenta ha sido eliminada corectamente',
+          'success'
+        )
+      }
+    })
   }
 
   verificarContraseñaActual(){
@@ -56,6 +80,7 @@ export class MiCuentaComponent implements OnInit {
       this.personaServ.actualizarPersona(usuario.data, usuario.key);
       document.getElementById("closeModal").click();
       Swal.fire('Exito', 'Contraseña cambiada correctamente! Vuelva a iniciar sesión para terminar el cambio.', 'success');
+      this.authServ.removeUserLoggedIn();
       this.router.navigate(['/autenticacion'])
       return;
 

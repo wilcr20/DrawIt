@@ -8,8 +8,9 @@
     <h5 class="title">{{usuario.data.nombre}}</h5>
     <hr style="border: solid 2px black">
     <strong class="card-t.nombreext">Correo Electronico: </strong> <span>{{usuario.data.email}}</span><br><br>
-    <button class="btn btn-success btn-sm" data-toggle="modal"
+    <button style="margin:0% 5% 0% 0" class="btn btn-success btn-sm" data-toggle="modal"
       data-target="#exampleModal">Cambiar Cotraseña</button>
+      <button class="btn btn-danger btn-sm" (click)="eliminarCuenta()">Eliminar esta Cuenta</button>
   </div>
 </div>
 
