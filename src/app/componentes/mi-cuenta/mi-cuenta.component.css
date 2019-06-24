@@ -1,0 +1,20 @@
+
+#perfil{
+    margin: auto;
+    margin-top: 3%;
+    height: 400px;
+    width: 800px;
+    background-color: rgba(238, 226, 226, 0.8)
+}
+
+.title{
+    color: blue;
+    font-size: 150%;
+}
+
+.imgPerfil{
+    width: 40%;
+     height:50%;
+     margin:auto;
+     border-radius: 100%;
+}

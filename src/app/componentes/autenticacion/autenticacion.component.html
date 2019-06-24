@@ -1,0 +1,90 @@
+<div class="login-wrap">
+  <div class="login-html">
+    <input id="tab-1" type="radio" name="tab" class="sign-in" checked><label
+      for="tab-1" class="tab">Login</label>
+    <input id="tab-2" type="radio" name="tab" class="sign-up"><label for="tab-2"
+      class="tab">Registro</label>
+    <div class="login-form">
+      <div class="sign-in-htm">
+        <div class="group">
+          <label for="user" class="label">Correo Electronico</label>
+          <input style="background-color: white;color:black" id="user" type="text" [(ngModel)]="email" autocomplete="off"
+            class="input form-control">
+        </div>
+        <div class="group">
+          <label for="pass" class="label">Contraseña</label>
+          <input style="background-color: white;color:black" id="pass" type="password" [(ngModel)]="contrasena"
+            class="input form-control" autocomplete="off" data-type="password">
+        </div>
+
+        <div class="group">
+          <button (click)="login()" class="button">Iniciar Sesión</button>
+        </div>
+        <div class="hr"></div>
+      </div>
+
+      <form [formGroup]="registroForm">
+        <div class="sign-up-htm">
+          <div class="group">
+            <label for="user" class="label">Nombre Completo</label>
+            <input style="background-color: white;color:black" id="user" autocomplete="off" [(ngModel)]="nombre"
+              name="a" type="text"
+              formControlName="nombre"
+              class="input form-control" [ngClass]="{ 'is-invalid': submitted &&
+              f.nombre.errors }">
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f.nombre.errors.required">Nombre completo es requerido</div>
+            </div>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Contraseña <span style="color:
+                rgb(41, 172, 51)">Minimo de 6
+                caracteres</span> </label>
+            <input style="background-color: white;color:black" autocomplete="off"  [(ngModel)]="contrasena"
+              formControlName="contrasena"
+              name="b"
+              type="password" class="input form-control" data-type="password"
+              [ngClass]="{ 'is-invalid': submitted && f.contrasena.errors }">
+            <div *ngIf="submitted && f.contrasena.errors"
+              class="invalid-feedback">
+              <div *ngIf="f.contrasena.errors.required">Contraseña es requerida</div>
+              <div *ngIf="f.contrasena.errors.minlength">Contraseña debe de
+                tener al menos 6 caracteres</div>
+            </div>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Repetir contraseña</label>
+            <input style="background-color: white;color:black" autocomplete="off" [(ngModel)]="contrasena2"
+              formControlName="confirmaContrasena"
+              name="c"
+              type="password" class="input form-control" data-type="password"
+              [ngClass]="{ 'is-invalid': submitted &&
+              f.confirmaContrasena.errors }">
+              <div *ngIf="submitted && f.confirmaContrasena.errors" class="invalid-feedback">
+                <div *ngIf="f.confirmaContrasena.errors.required">Es requerido confirmar contraseña</div>
+                <div *ngIf="f.confirmaContrasena.errors.mustMatch">Contraseñas no coincide</div>
+            </div>
+          </div>
+          <div class="group">
+            <label for="pass" class="label">Correo Electrónico</label>
+            <input style="background-color: white;color:black" autocomplete="off" [(ngModel)]="email"
+              name="d" type="text"
+              formControlName="email" [ngClass]="{ 'is-invalid': submitted &&
+              f.email.errors }"
+              class="input form-control">
+            <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+              <div *ngIf="f.email.errors.required">Email es requerido</div>
+              <div *ngIf="f.email.errors.email">Debe escribir una dirección de
+                correo valida</div>
+            </div>
+          </div>
+          <div class="group">
+            <button (click)="registro()" class="button">Registrarme</button>
+          </div>
+
+        </div>
+      </form>
+
+    </div>
+  </div>
+</div>

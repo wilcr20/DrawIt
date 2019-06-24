@@ -1,0 +1,91 @@
+#canvas{
+    margin: 0.5% 0 0 25%; 
+    margin-left: 50px;
+    border:2px solid;
+    border-radius: 3%;
+    background-color: white;
+}
+
+#btnCanvas{
+    margin: 1% 0 0 25%; 
+    margin-left: 50px;
+    border-radius: 3%;;
+}
+
+@media (max-width: 500px) {
+	#canvas{
+        width:250px;
+        height:250px;
+        margin: 5% 0 0 10%;
+        border:2px solid;
+        border-radius: 3%;
+    }
+}
+
+.herramientas{
+    float: left;
+    margin: 3% 0% 0% 3%; 
+    width: 350px;
+    height: 520px;
+}
+
+h6{
+    color: blueviolet;
+}
+h6:hover{
+    color: brown;
+}
+
+
+/* 
+Palabras */
+.sp1{
+    cursor:alias;
+    color:burlywood;
+}
+.sp1:hover{
+    color: blue;
+}
+.sp2{
+    cursor:alias;
+    color:rgb(24, 128, 76);
+}
+.sp2:hover{
+    color: rgb(223, 35, 35);
+}
+.sp3{
+    cursor:alias;
+    color:rgb(182, 65, 18);
+}
+.sp3:hover{
+    color: rgb(114, 197, 20);
+}
+
+
+.imgAncho{
+    width: 30px;
+    height: 20PX;
+}
+
+.btnAncho{
+    background-color: white;
+    margin-right: 2%;
+    border: 1px solid black;
+}
+.btnAncho:active{
+    border: 2px solid red;
+}
+
+
+table, th, td {
+    border: 1px solid black;
+    opacity: 0.97;
+    background: transparent;
+  }
+
+
+td{
+    margin: 50%; padding: 15px;
+
+}
+

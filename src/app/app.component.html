@@ -1,0 +1,30 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<!-- Navbar generico en todas las vistas -->
+<nav class="navbar navbar-full navbar-dark bg-dark">
+  <a class="navbar-brand" href="#">
+    <img
+      src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW1POsNkq-gnoB03ibvKVUVgyJnG3vu3xplbKnn8cHlFTRX6Po"
+      width="30" height="30" style="border-radius: 10%" class="d-inline-block align-top" alt="">
+    DrawIt
+  </a>
+  <a class="nav-link" href="#">Ver más dibujos!</a>
+
+  <div class="dropdown" style="margin-right:5%" *ngIf="authServ.isUserLoggedIn">
+    <button class="btn btn-danger dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+      Mi Cuenta
+    </button>
+    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+      <a class="dropdown-item" href="#">Mis dibujos</a>
+      <a class="dropdown-item" href="/mi-cuenta">Mi perfil</a>
+      <div class="dropdown-divider"></div>
+      <button class="dropdown-item" (click)="cerrarSesion()" style="color:red" href="#">Cerrar sesión</button>
+    </div>
+  </div>
+
+    
+  <button class="btn btn-success" *ngIf="!authServ.isUserLoggedIn" [routerLink]="['/autenticacion']">Login/Registro</button> 
+</nav>
+
+
+<router-outlet></router-outlet>
