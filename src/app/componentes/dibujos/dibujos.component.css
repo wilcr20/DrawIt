@@ -1,0 +1,21 @@
+#principal{
+    margin: auto;
+    margin-top: 2%;
+    height: 530px;
+    width: 1300px;
+    background-color: rgba(238, 226, 226, 0.8);
+    overflow-y: scroll;
+}
+
+.dibujoCard{
+    margin: 1% 1% 2% 4%;
+    border: 2px solid blueviolet;
+    border-radius: 20%;
+    height: 280px;
+    width: 340px;
+    background-color: rgb(251, 251, 251)
+}
+
+.dibujoCard:hover{
+    border: 3px solid rgb(68, 198, 221);
+}

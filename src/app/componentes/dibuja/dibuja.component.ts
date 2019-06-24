@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import Swal from 'sweetalert2';
+import{DibujosService } from '../../servicios/dibujos.service';
+import {AuthService} from '../../servicios/auth.service';
 @Component({
   selector: 'app-dibuja',
   templateUrl: './dibuja.component.html',
@@ -7,7 +9,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DibujaComponent implements OnInit {
 
-  constructor() { }
+  constructor( private dibujoServ:DibujosService, private authServ:AuthService) { }
 
   anchos = [{
     tam: 1,
@@ -22,16 +24,16 @@ export class DibujaComponent implements OnInit {
     tam: 7,
     img: 'https://i.imgur.com/RxSlVQs.png'
   }
-   /* ,
-  {
-    tam: 13,
-    img: 'https://i.imgur.com/nC6oDEY.png'
-  }
-    ,
-  {
-    tam: 20,
-    img: 'https://i.imgur.com/HECj0CE.png'
-  }*/
+    /* ,
+   {
+     tam: 13,
+     img: 'https://i.imgur.com/nC6oDEY.png'
+   }
+     ,
+   {
+     tam: 20,
+     img: 'https://i.imgur.com/HECj0CE.png'
+   }*/
 
   ]
 
@@ -43,19 +45,20 @@ export class DibujaComponent implements OnInit {
   dot_flag = false;
   canvas: any;
   ctx: any
-  w: 800;
-  h: 500;
+  w: 860;
+  h: 550;
   color = "";
   ancho = 1;
-  cuadricula= false;
-  
+
+  cuadricula = false;
+  nombreDibujo="";
+
 
   ngOnInit() {
     this.canvas = <HTMLCanvasElement>document.getElementById("canvas");
-  
+
     this.ctx = this.canvas.getContext("2d");
 
-    console.log(this.w, this.h, this.ctx)
     let oldthis = this;
     this.canvas.addEventListener("mousemove", function (e) {
       oldthis.findxy('move', e)
@@ -77,7 +80,7 @@ export class DibujaComponent implements OnInit {
   dibuja() {
     this.ctx.beginPath();
     this.ctx.moveTo(this.prevX, this.prevY);
-     this.ctx.lineTo(this.currX, this.currY); //rectas
+    this.ctx.lineTo(this.currX, this.currY); //rectas
     //this.ctx.arc(this.currX, this.currY,0.1, 0, 2 * Math.PI, true);
     this.ctx.strokeStyle = this.color;
     this.ctx.lineWidth = this.ancho;
@@ -85,12 +88,41 @@ export class DibujaComponent implements OnInit {
     this.ctx.closePath();
   }
 
-  cambiarAncho(tam){
-    this.ancho= tam;
+  cambiarAncho(tam) {
+    this.ancho = tam;
   }
 
-  limpiarCanvas(){
-    this.ctx.clearRect(0, 0, 800, 500)
+  limpiarCanvas() {
+    this.ctx.clearRect(0, 0, 860, 550)
+  }
+
+  guardarDibujoLocal() {
+    let old= this;
+    var link = document.createElement('a');
+    link.innerHTML = 'download image';
+    link.addEventListener('click', function (ev) {
+      link.href = old.canvas.toDataURL();
+      link.download =  old.nombreDibujo +".png";
+    }, false);
+    document.body.appendChild(link);
+    link.click()
+    document.body.removeChild(link);
+    document.getElementById("closeModal").click();
+  }
+
+  guardarDibujoOnline(){
+    this.dibujoServ.obtenerDibujos();
+    let user= this.authServ.usserLogged;
+    let url = this.canvas.toDataURL();
+    let json ={
+      nombre:this.nombreDibujo,
+      idAutor:user.key,
+      autor:user.data.nombre,
+      url:url
+    }
+    this.dibujoServ.crearDibujo(json);
+    document.getElementById("closeModal").click();
+    Swal.fire('Exito', 'Imagen ha sido guardada de manera online correctamente', 'success');
   }
 
   findxy(res, e) {
@@ -126,8 +158,8 @@ export class DibujaComponent implements OnInit {
   }
 
 
-  mostrarCuadricula(){
-    this.cuadricula= !this.cuadricula;
+  mostrarCuadricula() {
+    this.cuadricula = !this.cuadricula;
   }
 
 

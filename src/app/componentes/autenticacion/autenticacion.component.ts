@@ -6,7 +6,6 @@ import { MustMatch } from './_helpers/must-match.validator';
 import {AuthService} from '../../servicios/auth.service';
 import { Router } from "@angular/router";
 
-
 @Component({
   selector: 'app-autenticacion',
   templateUrl: './autenticacion.component.html',
@@ -40,8 +39,6 @@ export class AutenticacionComponent implements OnInit {
       }
 
     );
-
-
     this.obtenerPersonasLista();
   }
 
@@ -60,8 +57,9 @@ export class AutenticacionComponent implements OnInit {
         email: this.email
       }
       this.PerServ.crearPersona(data); //Llama servicio para agregar
-      Swal.fire('Correcto', 'Usuario agregado correctamente!', 'success')
+      Swal.fire('Correcto', 'Usuario agregado correctamente. Realize login para ingresar', 'success')
       this.resetForm();
+      document.getElementById("tab-1").click()
     }
 
   }

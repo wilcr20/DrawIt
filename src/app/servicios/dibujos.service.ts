@@ -13,7 +13,7 @@ export class DibujosService {
   }
 
   obtenerDibujos() { // Obtiene todods los Usuarios dela DB
-    return this.listDibujos = this.firebase.list('Personas');
+    return this.listDibujos = this.firebase.list('Dibujos');
     // return this.listUsers.snapshotChanges(); // Observable
   }
 

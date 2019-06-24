@@ -1,3 +1,16 @@
-<p>
-  dibujos works!
-</p>
+<div class="card" id="principal">
+    <div class="card-body">
+  
+      <div class="card-deck" style="margin: auto" >
+  
+        <div class="dibujoCard" *ngFor="let dibujo of dibujosLista">
+          <div class="card-body">
+            <h6 class="card-title" style="color: rgb(167, 167, 159)">{{dibujo.data.nombre}}</h6>
+            <img class="card-img-top" style=" margin-left:10%" src="{{dibujo.data.url}}" alt="Card image cap">
+            <span  style="color: blue; margin-left: 3%">Autor: </span><span> {{dibujo.data.autor}}</span>
+          </div>          
+        </div>
+
+      </div>
+    </div>
+  </div> 
