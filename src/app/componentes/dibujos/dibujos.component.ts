@@ -11,12 +11,16 @@ export class DibujosComponent implements OnInit {
 
   listaIntermedia: any = [];
   dibujosLista: any = [];
-
+  urlDibujo="";
 
   constructor(private dibujoServ:DibujosService) { }
 
   ngOnInit() {
     this.obtenerDibujosLista();
+  }
+
+  verDibujo(url){
+    this.urlDibujo= url;
   }
 
   obtenerDibujosLista(){
@@ -33,7 +37,7 @@ export class DibujosComponent implements OnInit {
             }
             this.dibujosLista.push(data);
           }
-
+          document.getElementById("spinner").remove();
         }
       )  
   }

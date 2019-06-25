@@ -26,11 +26,20 @@ export class AuthService {
   setUserLoggedIn(user) {  // Al realizar login , se guara en localStorage
     this.isUserLoggedIn = true; // Y la bandera de logeo pasará a true
     this.usserLogged = user;
-    localStorage.setItem('currentUser', JSON.stringify(user));
+    localStorage.setItem('currentUser',  btoa(JSON.stringify(user)));
+      
   }
 
   getUserLoggedIn() {
-  	return JSON.parse(localStorage.getItem('currentUser')); // Retorna el objeto User
+    let data =  localStorage.getItem('currentUser')
+    if(data ==null){
+      return null;
+    }else{
+      let dataD= atob(data);
+      console.log(dataD)
+  	  return JSON.parse( dataD); // Retorna el objeto User
+    }
+    
   }
 
   removeUserLoggedIn(){ // Cerrar Sesion

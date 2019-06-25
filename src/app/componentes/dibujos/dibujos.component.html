@@ -1,16 +1,40 @@
 <div class="card" id="principal">
-    <div class="card-body">
-  
-      <div class="card-deck" style="margin: auto" >
-  
-        <div class="dibujoCard" *ngFor="let dibujo of dibujosLista">
-          <div class="card-body">
-            <h6 class="card-title" style="color: rgb(167, 167, 159)">{{dibujo.data.nombre}}</h6>
-            <img class="card-img-top" style=" margin-left:10%" src="{{dibujo.data.url}}" alt="Card image cap">
-            <span  style="color: blue; margin-left: 3%">Autor: </span><span> {{dibujo.data.autor}}</span>
-          </div>          
-        </div>
+  <div class="card-body">
 
+    <img style="margin:7% 7% 7% 40%;" id="spinner"
+      src="../../../assets//spinner.gif" alt="">
+    <div class="card-deck" style="margin: auto">
+
+      <div class="dibujoCard" *ngFor="let dibujo of dibujosLista.reverse()">
+        <div class="card-body" data-toggle="modal"
+          data-target="#exampleModalCenter" (click)="verDibujo(dibujo.data.url)">
+          <h6 class="card-title" style="color: rgb(167, 167, 159)">{{dibujo.data.nombre}}</h6>
+          <img class="card-img-top" 
+            src="{{dibujo.data.url}}" alt="Card image cap">
+          <span style="color: blue; margin-left: 3%">Autor: </span><span>
+            {{dibujo.data.autor}}</span>
+        </div>
       </div>
     </div>
-  </div> 
+
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog"
+      aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h6>Visualización del dibujo</h6>
+            <button type="button" class="close" data-dismiss="modal"
+              aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body" style="border: 1px solid rgb(120, 120, 122);">
+            <img style="width: 100%; height:100%;" src="{{urlDibujo}}" alt="">
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>

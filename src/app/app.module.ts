@@ -3,6 +3,8 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReactiveFormsModule } from '@angular/forms';
 
+//Guard
+import {CanActivateViaAuthGuard} from './guard';
 
 // Firebase Modules
 import { AngularFireModule } from '@angular/fire';
@@ -36,7 +38,7 @@ import { DibujosComponent } from './componentes/dibujos/dibujos.component';
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,  // Firebase database module
   ],
-  providers: [AngularFirestore],
+  providers: [AngularFirestore,CanActivateViaAuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

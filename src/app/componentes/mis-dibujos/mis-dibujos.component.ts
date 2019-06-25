@@ -14,11 +14,41 @@ export class MisDibujosComponent implements OnInit {
 
   listaIntermedia: any = [];
   dibujosLista: any = [];
-
+  urlDibujo="";
+ 
   constructor(private dibujoServ:DibujosService, private authServ: AuthService,private router: Router) { }
 
   ngOnInit() {
     this.obtenerDibujosLista();
+  }
+
+
+  eliminarDibujo(key){
+    console.log(key);
+    Swal.fire({
+      title: 'Elimianar Dibujo',
+      text: "Si eliminas este dibujo, será imposible de volverlo a recuperar. ¿Desea continuar?",
+      type: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Sí, deseo eliminarlo!'
+    }).then((result) => {
+      if (result.value) {
+        this.dibujoServ.eliminarDibujo(key);
+        this.obtenerDibujosLista();
+        Swal.fire(
+          'Eliminad0!',
+          'Tu dibujo ha sido eliminado corectamente',
+          'success'
+        )
+      }
+    })
+    
+  }
+
+  verDibujo(url){
+    this.urlDibujo= url;
   }
 
   obtenerDibujosLista(){
@@ -38,6 +68,7 @@ export class MisDibujosComponent implements OnInit {
               this.dibujosLista.push(data);
             }
           }
+          document.getElementById("spinner").remove();
           if(this.dibujosLista.length==0){
             Swal.fire('', 'Usted no posee dibujos creados actualmente, cree uno y guardelo para ser visualizado', 'info');
             this.router.navigate(['/dibuja']);

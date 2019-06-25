@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import Swal from 'sweetalert2';
-import{DibujosService } from '../../servicios/dibujos.service';
-import {AuthService} from '../../servicios/auth.service';
+import { DibujosService } from '../../servicios/dibujos.service';
+import { AuthService } from '../../servicios/auth.service';
 @Component({
   selector: 'app-dibuja',
   templateUrl: './dibuja.component.html',
@@ -9,7 +9,7 @@ import {AuthService} from '../../servicios/auth.service';
 })
 export class DibujaComponent implements OnInit {
 
-  constructor( private dibujoServ:DibujosService, private authServ:AuthService) { }
+  constructor(private dibujoServ: DibujosService, private authServ: AuthService) { }
 
   anchos = [{
     tam: 1,
@@ -51,7 +51,7 @@ export class DibujaComponent implements OnInit {
   ancho = 1;
 
   cuadricula = false;
-  nombreDibujo="";
+  nombreDibujo = "";
 
 
   ngOnInit() {
@@ -97,12 +97,12 @@ export class DibujaComponent implements OnInit {
   }
 
   guardarDibujoLocal() {
-    let old= this;
+    let old = this;
     var link = document.createElement('a');
     link.innerHTML = 'download image';
     link.addEventListener('click', function (ev) {
       link.href = old.canvas.toDataURL();
-      link.download =  old.nombreDibujo +".png";
+      link.download = old.nombreDibujo + ".png";
     }, false);
     document.body.appendChild(link);
     link.click()
@@ -110,15 +110,30 @@ export class DibujaComponent implements OnInit {
     document.getElementById("closeModal").click();
   }
 
-  guardarDibujoOnline(){
+  guardarDibujoOnline() {
     this.dibujoServ.obtenerDibujos();
-    let user= this.authServ.usserLogged;
+    let user = this.authServ.usserLogged;
+    let userName = "";
+    let id = 0;
+
+    if (this.authServ.isUserLoggedIn) {
+      if (user != null) {
+        id = user.key
+        userName = user.data.nombre;
+      }
+
+    } else {
+      id = 0;
+      userName = "Anonimo";
+    }
+
+
     let url = this.canvas.toDataURL();
-    let json ={
-      nombre:this.nombreDibujo,
-      idAutor:user.key,
-      autor:user.data.nombre,
-      url:url
+    let json = {
+      nombre: this.nombreDibujo,
+      idAutor: id,
+      autor: userName,
+      url: url
     }
     this.dibujoServ.crearDibujo(json);
     document.getElementById("closeModal").click();

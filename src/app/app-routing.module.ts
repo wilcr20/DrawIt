@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import {CanActivateViaAuthGuard} from './guard';
+
 import {AutenticacionComponent} from '../app/componentes/autenticacion/autenticacion.component';
 import {DibujaComponent} from '../app/componentes/dibuja/dibuja.component';
 import {DibujosComponent} from '../app/componentes/dibujos/dibujos.component';
@@ -10,10 +12,10 @@ const routes: Routes = [
   {path:'', component:DibujaComponent},
   {path:'autenticacion', component:AutenticacionComponent},
   {path:'dibuja', component:DibujaComponent},
-  {path:'mi-cuenta', component:MiCuentaComponent},
+  {path:'mi-cuenta', component:MiCuentaComponent,canActivate: [CanActivateViaAuthGuard]},
   {path:'dibujos', component:DibujosComponent},
-  {path:'mis-dibujos', component:MisDibujosComponent},
-  {path:'**', component:DibujaComponent}
+  {path:'mis-dibujos', component:MisDibujosComponent,canActivate: [CanActivateViaAuthGuard]},
+  {path:'**', component:DibujaComponent} 
 ];
 
 @NgModule({

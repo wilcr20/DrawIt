@@ -1,0 +1,39 @@
+[debug] [2019-06-24T23:37:05.221Z] ----------------------------------------------------------------------
+[debug] [2019-06-24T23:37:05.224Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\PC\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js init
+[debug] [2019-06-24T23:37:05.225Z] CLI Version:   7.0.1
+[debug] [2019-06-24T23:37:05.225Z] Platform:      win32
+[debug] [2019-06-24T23:37:05.225Z] Node Version:  v11.9.0
+[debug] [2019-06-24T23:37:05.226Z] Time:          Mon Jun 24 2019 17:37:05 GMT-0600 (GMT-06:00)
+[debug] [2019-06-24T23:37:05.226Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2019-06-24T23:37:05.237Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2019-06-24T23:37:05.238Z] > authorizing via signed-in user
+[info] 
+     ######## #### ########  ######## ########     ###     ######  ########
+     ##        ##  ##     ## ##       ##     ##  ##   ##  ##       ##
+     ######    ##  ########  ######   ########  #########  ######  ######
+     ##        ##  ##    ##  ##       ##     ## ##     ##       ## ##
+     ##       #### ##     ## ######## ########  ##     ##  ######  ########
+
+You're about to initialize a Firebase project in this directory:
+
+  C:\Users\PC\Desktop\drawit
+
+[info] 
+=== Project Setup
+[info] 
+[info] First, let's associate this project directory with a Firebase project.
+[info] You can create multiple project aliases by running firebase use --add, 
+[info] but for now we'll just set up a default project.
+[info] 
+[debug] [2019-06-24T23:37:09.901Z] >>> HTTP REQUEST GET https://firebase.googleapis.com/v1beta1/projects?page_size=100  
+ 
+[debug] [2019-06-24T23:37:10.617Z] <<< HTTP RESPONSE 200
+[info] i  Using project draw-it-cr (draw-it)
+[info] 
+=== Hosting Setup
+[info] 
+[info] Your public directory is the folder (relative to your project directory) that
+[info] will contain Hosting assets to be uploaded with firebase deploy. If you
+[info] have a build process for your assets, use your build's output directory.
+[info] 

@@ -1,15 +1,43 @@
 <div class="card" id="principal">
   <div class="card-body">
 
-    <div class="card-deck" style="margin: auto" >
+    <img style="margin:7% 7% 7% 40%;" id="spinner"
+      src="../../../assets//spinner.gif" alt="">
 
-      <div class="dibujoCard" *ngFor="let dibujo of dibujosLista">
-        <div class="card-body">
+    <div class="card-deck" style="margin: auto">
+
+      <div class="dibujoCard" *ngFor="let dibujo of dibujosLista.reverse()">
+
+        <div class="card-body" data-toggle="modal"
+        data-target="#exampleModalCenter"  (click)="verDibujo(dibujo.data.url)" >
           <h6 class="card-title" style="color: rgb(167, 167, 159)">{{dibujo.data.nombre}}</h6>
-          <img class="card-img-top" style=" margin-left:10%" src="{{dibujo.data.url}}" alt="Card image cap">
+          <img class="card-img-top"
+            src="{{dibujo.data.url}}" alt="Card image cap">
         </div>
+        <button (click)="eliminarDibujo(dibujo.key)" class="btn btn-danger
+          btn-sm" style="border-radius:50%">
+          <img
+            src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMS4xLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI2OC40NzYgMjY4LjQ3NiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMjY4LjQ3NiAyNjguNDc2OyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjI0cHgiIGhlaWdodD0iMjRweCI+CjxnIGlkPSJEZWxldGVfX3gyRl9fVHJhc2giPgoJPHBhdGggc3R5bGU9ImZpbGwtcnVsZTpldmVub2RkO2NsaXAtcnVsZTpldmVub2RkOyIgZD0iTTYzLjExOSwyNTAuMjU0YzAsMCwzLjk5OSwxOC4yMjIsMjQuNTgzLDE4LjIyMmg5My4wNzIgICBjMjAuNTgzLDAsMjQuNTgyLTE4LjIyMiwyNC41ODItMTguMjIybDE4LjM3NC0xNzguNjZINDQuNzQ2TDYzLjExOSwyNTAuMjU0eiBNMTcwLjAzNSw5OC40NDJjMC00Ljk0Myw0LjAwNi04Ljk0OSw4Ljk0OS04Ljk0OSAgIGM0Ljk0MywwLDguOTUsNC4wMDYsOC45NSw4Ljk0OWwtOC45NSwxMzQuMjM4YzAsNC45NDMtNC4wMDcsOC45NDktOC45NDksOC45NDljLTQuOTQyLDAtOC45NDktNC4wMDctOC45NDktOC45NDlMMTcwLjAzNSw5OC40NDJ6ICAgIE0xMjUuMjg5LDk4LjQ0MmMwLTQuOTQzLDQuMDA3LTguOTQ5LDguOTQ5LTguOTQ5YzQuOTQzLDAsOC45NDksNC4wMDYsOC45NDksOC45NDl2MTM0LjIzOGMwLDQuOTQzLTQuMDA2LDguOTQ5LTguOTQ5LDguOTQ5ICAgYy00Ljk0MywwLTguOTQ5LTQuMDA3LTguOTQ5LTguOTQ5Vjk4LjQ0MnogTTg5LjQ5Miw4OS40OTJjNC45NDMsMCw4Ljk0OSw0LjAwNiw4Ljk0OSw4Ljk0OWw4Ljk1LDEzNC4yMzggICBjMCw0Ljk0My00LjAwNyw4Ljk0OS04Ljk1LDguOTQ5Yy00Ljk0MiwwLTguOTQ5LTQuMDA3LTguOTQ5LTguOTQ5TDgwLjU0Myw5OC40NDJDODAuNTQzLDkzLjQ5OSw4NC41NSw4OS40OTIsODkuNDkyLDg5LjQ5MnogICAgTTIxOC4zNiwzNS44MTFoLTM5LjM3NlYxNy44OTlDMTc4Ljk4NCw0LjMyMiwxNzQuNTkzLDAsMTYxLjA4NiwwTDEwNy4zOSwwQzk1LjAwMSwwLDg5LjQ5Miw2LjAwMSw4OS40OTIsMTcuODk5djE3LjkxM0g1MC4xMTYgICBjLTcuOTE0LDAtMTQuMzE5LDYuMDA3LTE0LjMxOSwxMy40M2MwLDcuNDI0LDYuNDA1LDEzLjQzMSwxNC4zMTksMTMuNDMxSDIxOC4zNmM3LjkxNCwwLDE0LjMxOS02LjAwNywxNC4zMTktMTMuNDMxICAgQzIzMi42NzksNDEuODE5LDIyNi4yNzQsMzUuODExLDIxOC4zNiwzNS44MTF6IE0xNjEuMDg2LDM1LjgxMWgtNTMuNjk1bDAuMDAxLTE3LjkxM2g1My42OTVWMzUuODExeiIgZmlsbD0iIzAwMDAwMCIvPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo="/>
+        </button>
       </div>
     </div>
+ 
+
+    <div class="modal fade"  id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h6>Visualización del dibujo</h6>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" style="border: 1px solid rgb(120, 120, 122);">
+              <img style=" width: 100%; height:100%;" src="{{urlDibujo}}" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
 
 
   </div>
